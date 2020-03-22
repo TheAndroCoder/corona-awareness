@@ -240,7 +240,53 @@
 	</div>
 
 	<script>
-		
+		$(()=>{
+			var animStarted = false;
+			$(window).scroll((e)=>{
+				var elem = $("#scrolledView");
+				if(isScrolledIntoView(elem)){
+					if(!animStarted){
+						startAnim();
+						animStarted=true;
+					}
+					//startAnim();
+				}
+			//var scroll = $(window).scrollTop();
+			//console.log(scroll);
+		});
+		});
+		function isScrolledIntoView(elem)
+{
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+
+    var elemTop = $(elem).offset().top;
+    var elemBottom = elemTop + $(elem).height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+		function startAnim(){
+			var totalDeaths = 4368;
+			var confCases = 121061;
+			var totalRecov = 66216;
+			var contImpacted = 113;
+			var count1 = 0;
+			var count2=0;
+			var count3=0;
+			var count4=0;
+			var interval=setInterval(function(){
+				
+				$("#deaths").text(count1);
+				$("#conf-cases").text(count2);
+				$("#total-recovered").text(count3);
+				$("#cont-impacted").text(count4);
+				if(count1!=totalDeaths)count1++;
+				if(count2!=confCases)count2++;
+				if(count3!=totalRecov)count3++;
+				if(count4!=contImpacted)count4++;
+				if(count1==totalDeaths && count2==confCases && count3==totalRecov && count4==contImpacted)clearInterval(interval);
+			},5)
+		}
 	</script>
 </body>
 </html>
